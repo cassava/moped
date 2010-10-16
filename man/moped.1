@@ -1,0 +1,245 @@
+.\" Written by Ben Morgan <benm.morgan@gmail.com>
+.TH Moped 1 "31 December 2009" "Moped 2.14"
+.SH NAME
+Moped \- flexible MPD playlist and playback manipulation
+
+
+.SH SYNOPSIS
+moped [options] \<operations\>
+
+
+.SH DESCRIPTION
+Moped is an advanced playlist manipulation tool for the Music Player Daemon,
+also known as MPD. Moped provides a flexible and efficient way to manipulate
+the playlist, as well as perform some other minor extra tasks.
+
+This is achieved primarily through search functionality. The majority of
+operations that are executed with Moped will be using this search functionality,
+as a way of selecting songs in the music library or the playlist and then
+manipulating them in some way.
+
+
+.SH SYNTAX
+The syntax in Moped is incredibly complex, and yet simple and flexible at the
+same time. (In order to make searching and adding and removing songs as simple
+and quick as possible, it was made complex.)
+
+Moped commands are typically composed of options and a Moped operation
+containing one or more keywords with one or more search terms; there are some
+options for which operations are optional. The basic Moped command has the
+format
+
+.RS
+.B operation: search term
+.RE
+
+where
+.I operation
+is a string of one or more keyword characters.
+The search term then follows after the colon (followed by an optional space).
+
+Observe a very simple example of adding all the songs from a particular artist,
+an album, and a track:
+.RS
+a: artist b: album t:track
+.RE
+
+.SS The Search Query
+TODO: The search query is divided into levels.
+
+.SS Operation Flags
+Operations tell Moped what to do with the selection. The primary and default
+operation in Moped is to add songs to the playlist. This operation has no
+character or flag assigned to it \- thus if you omit an operation,
+then Moped will assume you want to add the selection.
+.TP
+.B r
+remove the selected songs from the playlist, if they exist.
+.TP
+.B !
+exclude from the overall selection this particular selection.
+.TP
+.B e
+use regular expressions for the search terms.
+It is useful to put the search terms in single quotes for this.
+.TP
+.B m
+search multiple search terms with the same operation.
+Search terms are divided by spaces; therefore, if a search term
+has spaces in it, put the search term in quotes.
+Note that this operation is ignored with groups!
+.TP
+.B +
+define a group to be a union instead of an intersection.
+This flag is exclusively for groups (see section
+.I Unions and Intersections
+).
+
+.SS Keywords
+Keywords tell Moped in which tag it should search. Each keyword is a single
+character. If multiple keywords are given in the same operation, the last
+keyword is used; if no keyword is given than the default keyword
+.I t
+is used.
+.TP
+.B t
+title (default)
+.TP
+.B a
+artist
+.TP
+.B b
+album
+.TP
+.B n
+track number
+.TP
+.B g
+genre
+.TP
+.B y
+year
+.TP
+.B f
+filename
+.TP
+.B c
+comment
+.TP
+.B x
+any field
+
+.SS Search Terms
+The operation flags determine what to do, the keywords determine where to
+search, and the search terms determine what is searched.
+
+Search terms can be put in single and in double qoutes, although in most
+cases this is not necessary. If a single or a double quote is in the search
+term itself however, it must be escaped or the entire term must be put in
+opposite quotes.
+
+Note that Moped searches for the exact phrase of a search term. Thus if you
+search for the artist "The Fray" and the search term is "Teh Fray", Moped will
+only find songs with "Teh Fray" in the artist tag.
+
+If you search for an artist, whose name is part of the names of other artists,
+Moped will return a list of all the artists. There is no current way to search
+for exactly this artist and nothing more. In fact, even if you use regular
+expressions, it will not work. This will hopefully change in the future.
+
+.SS Unions and Intersections
+The fundamental function of groups is to provide multiple criteria to a search.
+Thus, a group is by default, an intersection of the results of the search
+queries in that group. This operation is defined by default, no character
+is required:
+.RS
+<a: search term t: search term 2>
+.RE
+
+The group may also however be a union of the results of the searches in the
+group. This however, is already provided without a group, thus this
+functionality is really only useful for some exotic search queries.
+.RS
++<a: search term t: search term 2>
+.RE
+
+
+.SH SYNTAX EXAMPLES
+The most basic example of a Moped command would be to insert a single track
+into the playlist, by using the default operation and the default keyword:
+.RS
+Landing in London
+.RE
+
+Using a little bit more power from Moped, we could insert an album, all the
+songs from a particular artist, and two different tracks:
+.RS
+b: Hatchery a: 3 Doors mt: "Breaking the Habit" "Easier to Run"
+.RE
+
+Note that, because we have only been specifying keywords and search terms,
+we do not have to provide the full term, just part of it.
+
+Suppose that we want to remove a song from a particular artist:
+.RS
+r<a: Red t: Pieces>
+.RE
+
+Alternatively we could make it more complicated with another query:
+.RS
++<a:Linkin Park !t:Intro> r<b: Hybrid Theory>
+.RE
+
+
+.SH OPTIONS
+.TP
+.B -h, --help
+show an overview of the options and exit
+.TP
+.B -i, --insert
+insert the song(s) how many places after current
+.TP
+.B -a, --append
+append the song(s) at the end of the playlist, implies --no-advance
+.TP
+.B -d, --all-songs
+just insert all songs, assumes --crop and --append
+.TP
+.B -s, --ishuffle
+shuffle intelligently (by artist)
+.TP
+.B -n, --no-shuffle
+do not shuffle the songs that are added
+.TP
+.B -c, --crop
+crop playlist and count saved songs. That is, it will save as many
+songs as the command is repeated. So if you used -ccc it will crop
+the playlist but leave the current song and the next two in the playlist.
+.TP
+.B -l, --clear
+clear the playlist
+.TP
+.B -t, --no-advance
+do not advance to the next song if stopped
+.TP
+.B -x, --unique
+make sure that all the songs being added to the playlist are unique
+.TP
+.B -b, --blacklist
+use the blacklist specified in the configuration file
+.TP
+.B -v --verbose
+specify the verbosity of moped: -v = status, -vv = debug messages
+.TP
+.B -q, --quiet
+specify how silent moped is to be: -q = errors, -qq = nothing at all, ever
+.TP
+.B -f, --no-config
+do not load the configuration file
+.TP
+.B -g, --gtk
+use a graphical command line enterpreter (recommended)
+.TP
+.B -u, --dryrun
+perform just a search, but do not manipulate the playlist
+
+
+.SH HINTS AND TIPS
+Moped becomes especially useful when you bind it to a key-combination in X11.
+Moped was not developed to facilitate access to basic playback functions,
+such as play, pause, stop, next or previous. These functions can already
+be simply bound to key-combinations with the use of a program such as
+.B mpc.
+
+
+.SH BUGS
+Searching for comments does not work. This is theoretically possible, but
+there is a problem in MPD which causes all comment searches to return no
+results.
+
+Should you find any (other) bugs in Moped, please send me an email.
+
+
+.SH AUTHOR
+Ben Morgan <benm.morgan@gmail.com>
+

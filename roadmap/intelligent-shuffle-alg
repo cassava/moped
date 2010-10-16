@@ -1,0 +1,21 @@
+Algorithm:
+
+A B C D =: S
+
+S.affinity = S.size
+
+for each turn:
+    choose a group G
+        find the group with the biggest affinity
+        choose randomly if the affinity is the same
+    
+    G.affinity /= 2
+    I = G.removeRand()
+    
+    for H in U\G:
+        H.affinity *= 2
+        if H.affinity > H.size:
+            H.affinity = H.size
+    
+    insert I
+

@@ -1,0 +1,33 @@
+#!/bin/bash
+# install.sh.example v2.15
+
+# This is an example installation script! For most systems it should work,
+# but this script is specifically for installing Moped into an Arch Linux
+# system with makepkg. That is, you need to make a PKGBUILD file for this.
+
+# A good prefix would be /usr or /usr/local
+PREFIX="$1/usr"
+
+echo -n "Installing Moped with prefix $PREFIX... "
+
+install -d $PREFIX/lib/moped
+install -m644 AUTHOR README CHANGES BUGS $PREFIX/lib/moped/
+install -m644 bin/*.py $PREFIX/lib/moped/
+install -m755 bin/moped.py $PREFIX/lib/moped/
+
+install -d $PREFIX/lib/moped/config
+install -m644 config/moped.conf.example $PREFIX/lib/moped/config/
+
+install -d $PREFIX/share/man/man1
+install -m644 man/moped.1 $PREFIX/share/man/man1/
+
+install -d $PREFIX/bin
+# this line below needs to be changed if you change PREFIX
+# makepkg will however strip this link, so it should also
+# be in PKGBUILD
+ln -s /usr/lib/moped/moped.py $PREFIX/bin/moped
+
+echo "done."
+
+exit 0
+

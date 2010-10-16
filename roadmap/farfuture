@@ -1,0 +1,11 @@
+Far future milestone, when I use xmms2:
+
+make moped more generic, so that it can use a variable backend,
+be it mpd or xmms2.
+
+give moped a configuration file in /etc called moped.conf
+
+give moped playlist support
+
+improve moped's gui
+

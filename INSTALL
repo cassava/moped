@@ -1,0 +1,24 @@
+Moped is meant to be installed using a repository package, but if you are
+installing it into a home directory or if you are making the package yourself,
+then you need to know that the dependancies of Moped are:
+
+Dependancies
+    python > 3.0
+    mpd
+
+Optional Dependancies
+    zenity     for a gui user input and feedback
+
+To install, edit install.example and save it as install.sh, or provide your
+own installation script. The default one can be renamed and it will run
+correctly with package creation in Arch Linux.
+
+Destination
+    /usr/lib/moped/
+    /usr/share/man/man1/
+
+Optional Files and Folders
+    roadmap/
+    BUGS
+    LICENSE (because it is GPL)
+    install.sh

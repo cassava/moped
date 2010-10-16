@@ -1,0 +1,77 @@
+-il a: Michael Card a: Bryan Brown a: Mejias a: Leeland b: He Will Save You eb: Liquid|Jars
+
+shuffle_perfect
+count total songs
+	126
+	
+	14 c
+	50 e
+	10 a
+	13 b
+	25 d
+
+or what if there were 5 and 10
+15 - 5 = 10
+10 / 5 = 2
+15 - 10 = 5
+5 / 10 = 0.5
+
+0.5b and 2a
+
+take the highest number
+
+2 - 1 = 1
+0.5 + 1 = 1.5
+
+so we have
+a
+
+14-5=9
+14-9=5
+
+9/5=1.80
+5/9=0.56
+
+1.56b and 0.80a
+
+8/5=1.60a
+5/8-0.625b
+
+8/4=2
+4/8=0.5
+7/4=1.75
+4/7=0.57
+6/4=1.5
+4/6=0.67
+
+a				b				-
+2		2		1		1		a
+1 + 1.8		2.8		1 + 0.56	2.56		a
+2.8 + 1.6	3.4		2.56 + 0.625	4.185		b
+1+3.4+2		6.4		4.185-1+0.5	3.685		a
+6.4-1+1.75	7.15		3.685+1+0.57	5.255		a
+7.15+-1+1.5	7.65		5.255+1+0.67	6.925
+
+Conclusion -- doesn't work
+
+
+
+
+
+
+IDEAL??
+a
+b
+a
+a
+b
+a
+a
+b
+a
+a
+b
+a
+a
+b
+a

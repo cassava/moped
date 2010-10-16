@@ -1,0 +1,48 @@
+FUTURE
+=======
+These are suggestions to improve on in the future.
+
+  * Ability to intelligently shuffle the current playlist,
+    leaving the current song at the top, like mpd does it.
+  * Ability to shuffle the part of playlist that is after
+    the current song, like Rio does it.
+  * Improve the intelligent shuffle algorithm, because at
+    the moment it is not so good. See 'intelligent-shuffle'
+  * Include playlist support. See the playlist folder
+    for an example.
+
+
+===========================================================
+
+
+filter(songlist, removelist) -> songlist
+parse(string) -> object
+process(object) -> results
+    results.searches[] # individual searches get combined in the end
+    results.insertlist
+    results.removelist
+    results.string
+    results.object
+blacklist(results, aggresive=False) -> results
+    filters songs from insertlist
+    if aggresive,
+        adds blacklist to removelist
+filter_duplicates(results) -> results
+
+
+feature ideas:
+
+tB: get the album of the track that you find
+tT: get the track that you search for
+tA: get the artist of the track that you search for
+
+
+what if you want to add the album of a track sorted after it, excluding that track.
+What if you only want to filter that track from it?
+
+bug: right now when you have a shuffled album, and you run -cnx b: that album,
+it will insert 0 songs, because all have been removed due to -x. In other words,
+-x acts before the list has been cropped or modified. That's not so good.
+
+    
+    

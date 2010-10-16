@@ -1,0 +1,33 @@
+MPD Moped -- Driving your MPD playlists where they need to go!
+Moped is an advanced playlist manipulator for the Music Player Daemon,
+also known as MPD. The purpose is to provide a flexible and easy way to
+add music to the playlist, as well as perform other extra tasks
+
+This project started as essentially a hack: mpcadd.py, which I kept adding
+things to, but which was not very well written. Hence, I wanted to rewrite
+it in Java, but then decided Python was simply too good.
+
+Features
+	* Flexible messaging system
+	* Uses py-mpdclient2
+
+    * Flexible search functions
+        - regex
+        - filtering
+        - grouping
+        - easy syntax
+        - dry search
+	* Insert, append or remove songs
+    * Add the database to the playlist
+	* Blacklists
+	* Shuffling
+        - Intelligent shuffling
+	* Configuration file support
+	* Crop or clear the playlist
+    * Withhold songs while cropping
+    * Perform individual commands (such as only crop)
+	* Gui messaging (moped -g is useful, bind it to a shortcut)
+
+
+Read the man file!
+

@@ -1,0 +1,226 @@
+BUGS
+============
+open bugs: 0
+open enhancements: 5
+total count: 30
+
+moped?.py #34:2010-08-19 [new] :high
+ [bug]
+    the query
+        5:19
+    fails with an unexpected error
+
+moped?.py #33:2010-01-05 [new] :med
+ [bug]
+    the query
+        +r<ae:".*" !b: End of Silence>
+    should not include End of Silence, but it does.
+    So the list effectively gets cleared.
+    
+    If we could implement a way to have several lists in memory at a time:
+        playlist
+        media-library
+    then we could search in both of these... it might be more efficient
+    for more complex queries. If we could then use real SETS based on
+    filenames or something, that would be even better.
+    
+    It would make the implementation much cleaner.
+    
+
+mopedparser.py #15:2009-03-10 [new] :high
+ [enh]
+    fix the _group_process() function so that it uses the new
+    songlist_search() function, which is more cpu efficient,
+    and actually eliminates completely the need to use any
+    of the filter functions of mpdcommunal (a shame I suppose).
+    eventually, it may be merged into mpdcommunal, maybe.
+
+mopedparser.py #25:2009-06-08 [new] :low
+ [enh]
+    implement something like a picker, a flag that shows you everything that
+    it found in the search, all numerated, which then let you choose which
+    songs that you want to add. This saves you one extra command.
+
+moped.py #27:2009-06-08 [new] :high
+ [enh]
+    implement a proper configuration parsing program.
+    
+moped.py #28:2009=06-08 [new] :med
+ [enh]
+    don't require any external dependencies: zenity,
+    implement the library in python code again.
+
+mopedparser.py #30:2009-10-06 [new] :med
+ [enh]
+    right now the parsing and processing system using five primary functions:
+      parse_argument_list()
+      _process_group()
+      _parse_group()
+      _process_unit()
+      _parse_unit()
+    It would be better if we could parse the entire thing once, turn it into
+    some kind of object, and have another method read that object, and do the
+    searches based on information from that object. That way, the code wouldn't
+    be spread all over 5 functions, but clearly modularized into two separate
+    functions.
+
+moped.py #31:2009-10-30 [new] :med
+ [enh]
+    move the moped configuration files to:
+        ~/.moped/moped.conf
+    create the folder structure
+        ~/.moped/playlists/
+    allow the putting of 'playlists' in the playlists folder. These can then
+    be specified on the command line, and it means that commonly used playlists
+    do not have to continuously be typed up again and again.
+    
+    Filename should end in .mpl
+    Format of first line in file:
+        $MopedPlaylist:ID#:Name$
+    Any lines thereafter should be a moped (search) command.
+    
+    Example:
+    $MopedPlaylist:0:default$
+    a: This artist should be added
+    !t: But please get rid of this song!
+    ma: This this this "and this artist too"
+    eb: '.*Andrea.*'
+
+mopedparser.py #32:2009-11-11 [new] :med
+ [enh]
+    allow an option to automatically escape all single quotes, and have this
+    set by default. (unless e is set? or all the time?)
+
+
+CLOSED BUGS
+============
+closed: 10
+
+stringutils.py #16:2009-01-17 [closed]
+ [bug]
+    there is a bug in stringutils.py in the split function. Or, rather, a bug
+    in moped where the cause is in stringutils.
+    Parsing the following line,
+      -vv <a: Phil Joel tm:"You Belong To Me" "Call Unto Me">
+    results in moped interpreting it as such:
+      '<a: Phil Joel 'tm:You Belong To Me' 'Call Unto Me>'
+    This is clearly false, and could be fixed in two ways. One way is that
+    spaces be inserted. The second way is more complete, and perhaps desireable,
+    however not much easier. It would involve in completely rewriting the
+    split function utilizing regex.  
+ [solution]
+    moped stopped using this function, as it wasn't necessary.
+    A normal split function seems to be sufficient. However,
+    in the future, it will be seen if moped functions without it.
+    mopedparser.py, however still needs these stringutils functions.
+
+moped? #21:2009-05-03 [closed]
+ [bug]
+    try to run the command "moped -ccccccccc"
+    and you shall see that it saves songs,
+    but does nothing else.
+ [solution]
+    the problem was a name error
+    at the same time fixed a bug that prevented exceptions from being shown.
+
+mopedparser.py #22:2009-05-03 [closed]
+ [enh]
+    use the native crop function in the newer version of mpd.
+ [comments]
+    it's possible that we have to wait for the next release, because the
+    release that said it supported it apparently did not. It's a shame,
+    because mpd really needs to have some more of these basic functions.
+ [solution:invalid]
+    they haven't implemented this in the mpd server
+
+moped.py #23:2009-05-03 [closed]
+ [bug]
+    when you use the gui it no longer automatically gives it the focus
+    in the new XFCE4.6
+ [comments]
+    perhaps it is time to depart from zenity as a gui engine;
+    it is anyway too slow to load. See if you can use a python solution again.
+ [history]
+    zenity was used because the python version of wxGTKPython was broken.
+ [solution:won't fix]
+    this is a problem with the xfce window manager: use OpenBox
+
+mopedparser.py #18:2009-03-30 [closed]
+ [bug]
+    when parsing this "I'm Guilty", moped just dies silently,
+    without giving any kind of error message.
+ [comments]
+    that's strange. Can you give any reason why it might be so?
+    perhaps we need to work on some more debugging stuff.
+ [debug]
+    Moped: in run()
+      parsing the search formula 'I'm Guilty'
+ [solution]
+    Catch MopedSyntaxException and then send user a message,
+    fixed an issue in communication.py at the same time.
+
+mopedparser.py #19:2009-03-30 [closed]
+ [enh]
+    automatically escape all single quotes,
+    use double quotes to quote something.
+    thus this wouldn't work:
+        t: 'vertical stuff'
+    but would have to be like this:
+        t: "vertical stuff"
+ [comments]
+    would break unix style though, so I'm not sure if this is a
+    good idea. It is also noteworthy to think of what happens on
+    the unix command line when you use moped.
+ [solution:won't fix]
+    it would break unix style, this is a needless enhancement,
+    though later it may be reopened.
+
+moped.py #26:2009-06-08 [closed]
+ [bug]
+    mpd got updated. get in the middle of a playlist. Stop mpd, and then start.
+    Add a song, and it started playing the song before that song. Didn't
+    really try to reproduce it yet.
+ [solution:works for me]
+    can't reproduce it
+
+mopedparser.py #20:2009-03-30 [closed]
+ [bug]
+    when inserting a song to a stopped playlist,
+    decide where the song will go. Before or after.
+    Right now it is after.
+  [comments]
+    In theory it should go after. But what happens when you have
+    a large playlist, then after song #1? Then the problem is that
+    when you play it skips the current song. So this is a bit of a
+    stalemate. Need to decide upon something and then stick to it.
+    
+    I think actually before would make more sense.
+  [job]
+    test to see if it really is like that.
+  [solution]
+    leave it at after, to put it before would be a bit of work and
+    would go against the style. Maybe some other day.
+
+mopedparser.py #17:2009-03-10 [closed]
+ [bug]
+    there is a bug such that when a filter search fails, but each of the
+    individual searches do not, then there is no error message.
+    I wonder, the optimal correction would require a restructuring.
+    It is anyway very confusing, the way it is coded at the moment.
+    If Bug/enhancement #15 were addressed, then this would be too.
+ [comments]
+    If you run '<a: Michael Card t: Lost>'
+       artist "Michael Card" finds something, and
+       title "Lost" finds something,
+       but the merge does not. Perhaps check a merge?
+ [solution]
+    It is fixed, but it is a messy fix. Note to improve the implementation
+    of this solution once bug #15 and bug #29 are fixed.
+
+mopedparser.py #29:2009-09-06 [closed]
+ [enh-bug]
+    put some code from _process_unit into a separate function:
+    the code takes a search segment and reduces it down.
+    This would simplify the solving of bug #17.
+ [solution:obsolete]
+    Obsolete. Works for me right now. Can't remember what I wanted to do.

@@ -1,0 +1,35 @@
+# Moped Config File
+# This file comes in /home/$USER/.moped.conf
+# You have the potential power through this config file
+# to screw up everything on your system, as well as moped.
+# Internal options are specified by this format:
+#   self.option = value
+# External commands and options can be plainly stated, eg.
+#   comm.verbosity = value
+
+# If you want to change the verbosity of moped
+#comm.verbosity = 1
+
+# Set the blacklist that moped is to use right here
+# ((searchtype, searchstring))
+self.blacklist = (
+('artist', 'Twila Paris'),
+('artist', 'Plus One'),
+('artist', 'Judy Bailey'),
+('artist', 'Silverwind'),
+)
+
+# If you want the blacklist to be used *all* the time:
+#self.blacklist = True
+
+comm.send(3, "config load success")
+# End of File
+#
+# I am going to redo the way that this file works.
+# It is going to be the way that versant works,
+# most likely: a value-key pair always.
+#
+# blacklist[0] = "a: Twila Paris"
+# blacklist_on = "True"
+# ... hmm, still need to think about this some more.
+# It's not very flexible in terms of what you can do.

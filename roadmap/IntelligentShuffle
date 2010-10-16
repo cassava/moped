@@ -1,0 +1,95 @@
+Intelligent Shuffle Algorithm:
+
+The idea of this is to prevent shuffle from randomly dumping everything anywehere (which is actually the idea of shuffle, but this shuffle should disperse things more evenly) This is most useful when there is a playlist of less songs, where you want something like alternating songs: [oxooxxoxoxooxoox] instead of [oooxxxoxoxxxooooo]. There are many ways to implement this.
+
+-------------
+Notes:
+
+Consider the shuffle, que and insert functions of:
+	Rockbox,
+	Rio Karma,
+	mpcadd,
+	Normal (like Winamp)
+
+-------------
+Idea #1:
+Electron Model Algorithm
+
+Every song is like an electron.
+It repels away from like electrons, and is attracted to cations.
+But how do you want to start? Start shuffled then manipulate?
+Or gradually add them.
+
+Pros: Very flexible
+Cons: Very difficult to implement; hard on CPU.
+
+-------------
+Idea #2:
+Chooser Algorithm
+
+After much thinking, I have decided the following is the most efficient and easiest way to accomplish this technical challenge. You add each song individually (which takes a while, but is significantly faster than any other I can think of at the moment).
+
+There is a percentage (also works with the above). This percentage controls how much it adheres to structuring vs completely random.
+	100%  Highly structured
+	0%    Completely random
+
+This is easy to implement. There is a chooser class, a container class, and more.
+
+/**
+ * This class actually does all the hard lifting.
+ * It uses all of the different classes together,
+ * sets settings, shuffles the lists, puts them
+ * together, and returns the final grand list.
+ */
+public class Chooser {
+	/* This class then takes each Container,
+	 * whose preference value is initialized
+	 * with the number of songs it contains.
+	 */
+
+	// ...
+}
+
+/**
+ * This class contains one of the list of songs,
+ * or whatever is to be shuffled.
+ */
+class Container {
+	List songList;
+	int preference;
+	// ...
+}
+
+Give an example situation:
+
+Chooser is given 5 artists:
+	a:[12 songs]
+	b:[30 songs]
+	c:[7 songs]
+	d:[2 songs]
+	e:[77 songs]
+
+It then uses the n values to determine from which group (a to e) to choose from.
+Take a song from a group, and its preference goes down enormously.
+For each time a song group doesn't get a pick, it goes up.
+	Remove song: (pref/no.of.prev.songs) * no.of.current.songs / 3
+	No action  : *2
+Percentage could affect these values. Trial and error will have to determine the
+optimum values for these. A preference value of 0 can only be present for lists
+that have no songs.
+
+The central thing to this algorithm is the way that preference values determine
+which group is chosen (random or mode):
+
+For the above example, an extra list would be generated (perhaps), with
+	12 a, 30 b, 7 c, 2 d, and 77 e
+A random pick would give e the highest chance. Mode would also give e the lead.
+Next time around:
+	24 a, 60 b, 14 c, 4 d, 38 e
+Thus b would be chosen.
+	48 a, 30 b, 28 c, 8 d, 76 e
+Then e would be chosen:
+	96 a, 60 b, 56 c, 16 d, 38 e
+Then a would be chosen:
+And so forth and so on, but the list already looks like this:
+	[ebea]

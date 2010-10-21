@@ -1,0 +1,28 @@
+# Contributor: Ben Morgan <benm.morgan@gmail.com>
+pkgname=moped
+pkgver=2.15
+pkgrel=1
+pkgdesc="moped is an advanced tool to manipulates MPD playlists"
+arch=('i686') # I haven't tested x86_64
+url=""
+license=('GPL')
+groups=()
+depends=(python zenity mpd)
+makedepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+install=
+source=($pkgname-$pkgver.tar.gz)
+noextract=()
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+  
+  mv install.sh.example install.sh
+  chmod +x install.sh
+  ./install.sh $pkgdir
+  
+  ln -s /usr/lib/moped/moped.py $pkgdir/usr/bin/moped
+}

@@ -11,7 +11,8 @@ Optional Dependancies
 
 To install, edit install.example and save it as install.sh, or provide your
 own installation script. The default one can be renamed and it will run
-correctly with package creation in Arch Linux.
+correctly with package creation in Arch Linux. A PKGBUILD for Arch Linux
+can be found in the install directory.
 
 Destination
     /usr/lib/moped/

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # moped.py
 
@@ -7,7 +7,7 @@ version = "2.14"
 author = "Ben Morgan"
 date = "31 December 2009"
 license = "GNU General Public License"
-email = "uv.sound@gmail.com"
+email = "benm.morgan@gmail.com"
 
 import sys
 import os

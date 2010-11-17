@@ -3,9 +3,9 @@
 # moped.py
 
 name = "Moped"
-version = "2.14"
+version = "2.15"
 author = "Ben Morgan"
-date = "31 December 2009"
+date = "17. November 2010"
 license = "GNU General Public License"
 email = "benm.morgan@gmail.com"
 

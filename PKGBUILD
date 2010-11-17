@@ -1,7 +1,7 @@
 # Contributor: Ben Morgan <benm.morgan@gmail.com>
 pkgname=moped
-pkgver=2.15b1
-pkgrel=3
+pkgver=2.15
+pkgrel=2
 pkgdesc="Moped is an advanced and flexible tool to manipulate MPD playlists"
 arch=('any') # I haven't tested x86_64
 url=""
@@ -26,4 +26,4 @@ build() {
   
   #ln -s /usr/lib/moped/moped.py $pkgdir/usr/bin/moped
 }
-md5sums=('eee2cb4960186cba53c905f485ccb885')
+md5sums=('42bc34ca56a9389e596354b9b47496f0')

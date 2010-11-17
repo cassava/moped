@@ -1,9 +1,9 @@
 # Contributor: Ben Morgan <benm.morgan@gmail.com>
 pkgname=moped
 pkgver=2.15b1
-pkgrel=2
-pkgdesc="moped is an advanced tool to manipulates MPD playlists"
-arch=('i686') # I haven't tested x86_64
+pkgrel=3
+pkgdesc="Moped is an advanced and flexible tool to manipulate MPD playlists"
+arch=('any') # I haven't tested x86_64
 url=""
 license=('GPL')
 groups=()
@@ -14,7 +14,7 @@ conflicts=()
 replaces=()
 backup=()
 install=
-source=($pkgname-$pkgver.tar.gz)
+source=(https://github.com/downloads/cassava/Moped/$pkgname-$pkgver.tar.gz)
 noextract=()
 
 build() {

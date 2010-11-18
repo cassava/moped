@@ -1,0 +1,57 @@
+$PACKAGE\_NAME INSTALLATION INSTRUCTIONS
+=======================================================================
+
+### Dependancies
+  - python > 3.0
+  - mpd
+
+### Optional Dependancies
+  - zenity (for a gui user input and feedback)
+
+### Installation
+  - edit `install.sh.example` and save as `install.sh`
+    This installation script was written for package creation in
+    Arch Linux. Consider looking at the `PKGBUILD` for help.
+  - the man file goes to `/usr/share/man/man1/`
+  - the contents of `bin/` go to `/usr/lib/moped/`
+  - create a symbollic link pointing to `moped.py`
+
+### Tips
+  - create a shortcut to `moped -g`
+
+
+Generic Installation Instructions
+----------------------------------
+**WARNING:** This is a generic guide on how to install this package, it was
+not written specifically for this package, but that does not mean that
+it is not applicable (for if something weren't, then it would probably
+be deleted... hopefully). The fact is, we all hate updating this file,
+because we don't ourselves need it, so better something generic that
+works than something outdated that trashes (unlikely) your system.
+
+The recommended way to install this is of course to use a package, that
+way you avoid doing work ;-) If that cannot however be avoided, here
+are a few guidelines which should help you to figure out how to install
+this package.
+
+  1. See the Arch Linux `PKGBUILD` for help. The `PKGBUILD` is a file
+     which determines exactly how a package is built and where the files go.
+     The function `build()` is especially important. If you get this, you
+     pretty much have everything you need, unless your system looks
+     different.
+  
+  2. The directory structure in the source often mirrors the way the
+     files will be distributed when they are installed.
+  
+  3. You could use a little intuition if the above two didn't help:
+       * binaries go to `/usr/bin`
+       * helper libraries or scripts go to `/usr/lib/$package\_name`
+       * common resources that aren't part of the program logic go
+         to `/usr/share/$package\_name`
+
+That should get you hopefully far enough. Otherwise just send me a
+quick message, and I'll see how I can help (see `AUTHORS`).
+
+
+_Revision: 18. November 2010_
+

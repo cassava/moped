@@ -4,10 +4,9 @@
 
 name = "Moped"
 version = "2.15"
-author = "Ben Morgan"
+author = "Ben Morgan <uv.sound@gmail.com>"
 date = "17. November 2010"
 license = "GNU General Public License"
-email = "benm.morgan@gmail.com"
 
 import sys
 import os
@@ -75,7 +74,6 @@ class Options():
         
         optparser.usage = \
         """\b\b\b\b\b\b\b%s version %s  (%s)""" % (name, version, date)
-        """Written by %s\n""" % author
         """\n"""
         """MPD Moped -- Driving your MPD playlists where they need to go!\n"""
         """Moped is an advanced playlist manipulator for the Music Player Daemon,\n"""

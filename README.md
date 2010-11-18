@@ -29,23 +29,23 @@ Examples (shamelessly copied from the man file)
 
 Features
 ----------
-	* Flexible messaging system
+  * Flexible messaging system
   * Flexible search functions
-      - regex
-      - filtering
-      - grouping
-      - easy syntax
-      - dry search
-	* Insert, append or remove songs
+    - regex
+    - filtering
+    - grouping
+    - easy syntax
+    - dry search
+  * Insert, append or remove songs
   * Add the database to the playlist
-	* Blacklists
-	* Shuffling
-      - [ Intelligent shuffling ]
-	* Configuration file support
-	* Crop or clear the playlist
+  * Blacklists
+  * Shuffling
+    - [ Intelligent shuffling ]
+  * Configuration file support
+  * Crop or clear the playlist
   * Withhold songs while cropping
   * Perform individual commands (such as only crop)
-	* Gui messaging (moped -g is useful, bind it to a shortcut)
+  * Gui messaging (moped -g is useful, bind it to a shortcut)
 
 
 _Read the man file!_

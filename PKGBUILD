@@ -1,7 +1,7 @@
 # Contributor: Ben Morgan <uv.sound@gmail.com>
 pkgname=moped
 pkgver=2.16
-pkgrel=2
+pkgrel=3
 pkgdesc="An advanced tool to flexibly manipulate MPD playlists"
 arch=('any')
 url="https://github.com/cassava/Moped"
@@ -17,3 +17,4 @@ package() {
   chmod +x install.sh
   ./install.sh $pkgdir
 }
+md5sums=('d42c37424a7aa273121f6935a26f98dc')

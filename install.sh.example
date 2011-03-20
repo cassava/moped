@@ -28,7 +28,7 @@ install -m755 moped.py $DATADIR/
 
 cd $STARTDIR
 install -d $DOCDIR
-install -m644  BUGS CHANGES README TODO $DOCDIR/
+install -m644 BUGS CHANGES README $DOCDIR/
 
 cd $STARTDIR/doc
 install -d $DOCDIR/examples

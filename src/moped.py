@@ -86,7 +86,7 @@ class Options():
         optparser = optparse.OptionParser()
         
         optparser.usage = \
-        """\b\b\b\b\b\b\bMoped version %s  (%s)""" % version
+        """\b\b\b\b\b\b\bMoped version %s""" % version
         """\n"""
         """MPD Moped -- Driving your MPD playlists where they need to go!\n"""
         """Moped is an advanced playlist manipulator for the Music Player Daemon,\n"""

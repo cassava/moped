@@ -1,3 +1,6 @@
-/roadmap export-ignore
-.gitignore export-ignore
-.gitattributes export-ignore
+doc/dev         export-ignore
+PKGBUILD        export-ignore
+moped.install   export-ignore
+TODO            export-ignore
+.gitignore      export-ignore
+.gitattributes  export-ignore

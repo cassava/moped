@@ -4,3 +4,7 @@
 post_install() {
     ln -s /usr/lib/moped/moped.py /usr/bin/moped
 }
+
+post_remove() {
+    rm /usr/bin/moped
+}

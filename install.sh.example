@@ -37,11 +37,10 @@ install -m644 examples/* $DOCDIR/examples/
 install -d $PREFIX/usr/share/man/man1
 install -m644 man/moped.1 $MANDIR/man1/
 
-install -d $BINDIR
-# this line below needs to be changed if you change PREFIX
-# makepkg will however strip this link, so it should also
-# be in PKGBUILD
-ln -s $DATADIR/moped.py $BINDIR/moped
+# Install a symlink to the normal binary directory, so that moped
+# is also in the system path and can be excuted with `moped`.
+#install -d $BINDIR
+#ln -s $DATADIR/moped.py $BINDIR/moped
 
 echo "done."
 

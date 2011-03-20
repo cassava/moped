@@ -1,0 +1,6 @@
+# moped.install
+# This file is used for installation with pacman
+
+post_install() {
+    ln -s /usr/lib/moped/moped.py /usr/bin/moped
+}

@@ -1,0 +1,64 @@
+A=40
+B=20
+C=10
+
+------
+ALGORITHM 1:
+
+1. Sort all of the entries ascending
+2. Find the biggest, divide it by all the others and store this value
+3. The answers determine when to place that value after so many As have been placed.
+   Values have to be at least as much, so it needs to flow over, if they are
+   not whole numbers. In that case, save the overflowed value. Such that:
+   place one A: add 1 to all the other storage values... etc if one is over
+   it's limit, add it, save the rest for the next time.
+   
+   Take the one that is most over its own limit. Or—prefer adding one that has
+   a lower limit. Limit of A is 1.
+   
+   :: If two are within ..x.. of the same amount over the limit, then prefer
+      the one with the lower limit.
+
+
+
+
+
+
+1. A=40, B=20, C=10
+2. A/B=2, A/C=4
+     b=0    c=0
+3. +A → a=0, b=1, c=1
+   +A → a=0, b=2, c=2
+   +B → a=1, b=0, c=3
+   +A → a=0, b=1, c=4
+   +C → a=1, b=2, c=0
+   +A → a=0, b=3, c=1
+   +B → a=1, b=1, c=2
+   +A → a=0, b=2, c=3
+   +B → a=1, b=0, c=4
+   +A → a=0, b=1, c=5
+   +C → a=1, b=2, c=1
+   +A → a=0, b=3, c=2
+   +B → a=1, b=1, c=3
+   +A → a=0, b=2, c=4
+   ...
+
+=> A=8  B=4  C=2
+
+
+Real Life Example:
+1. A=55,  B=11,  C=13,  D=26
+   a=1.00 b=5.00 c=4.23 d=2.12
+   
+   
+
+
+
+--------------------------------
+Alternative Algorithm 2:
+
+Consider each group to be trickling out. So every .. moves trickle out each
+given kind and add it to a group from which is randomly chosen. This is a much
+more random process, while the other one is much more deterministic. This one
+would be a lot simpler though.
+

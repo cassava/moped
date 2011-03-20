@@ -1,0 +1,9 @@
+TODO: MOPED
+=======================================================================
+
+Rewrite Moped to make it more modular, maybe rewrite it in Haskell (just for
+the heck of it).
+
+Integrate the functioning diffuse algorithm (see `docs/dev/Diffuse/`).
+
+On installation have python compile the libraries into python bytecode.

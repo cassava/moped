@@ -2,11 +2,24 @@
 # -*- coding: utf-8 -*-
 # moped.py
 
-name = "Moped"
-version = "2.15"
-author = "Ben Morgan <uv.sound@gmail.com>"
-date = "17. November 2010"
-license = "GNU General Public License"
+# Moped is an advanced playlist manipulator for the Music Player Daemon.
+# Copyright © 2008–2011 Ben Morgan <neembi@googlemail.com>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
+
+version = "2.16 (20. March 2011)"
 
 import sys
 import os
@@ -73,7 +86,7 @@ class Options():
         optparser = optparse.OptionParser()
         
         optparser.usage = \
-        """\b\b\b\b\b\b\b%s version %s  (%s)""" % (name, version, date)
+        """\b\b\b\b\b\b\bMoped version %s  (%s)""" % version
         """\n"""
         """MPD Moped -- Driving your MPD playlists where they need to go!\n"""
         """Moped is an advanced playlist manipulator for the Music Player Daemon,\n"""
@@ -90,8 +103,6 @@ class Options():
         """You can search many different tags of songs, as well as use shortcuts:\n"""
         """'title', 'artist',  'album', 'genre', 'year', 'file', and 'any',\n"""
         """    't', 'a' 'ar', 'b' 'al',     'g',    'y',    'f', and   'x'.\n"""
-        """\n"""
-        """Distributed under the %s.""" % license
         
         # This still overrides the config. Way to fix that would be to apply config
         # before even loading these options, and then use the config values as default here.
@@ -339,5 +350,4 @@ if __name__ == "__main__":
     #  [64]  incomplete code
     #  128   unexpected error
 
-
-# End of File
+# vim: set expandtab shiftwidth=4 softtabstop=4 textwidth=79:

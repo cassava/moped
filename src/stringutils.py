@@ -1,14 +1,23 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # stringutils.py
 
-name = "String Utilities"
-version = "1.6.0"
-author = "Ben Morgan"
-date = "4th of November, 2008"
-license = "GNU General Public License"
-email = "uv.sound@gmail.com"
-
+# Various functions pertaining to Strings
+# Copyright © 2004, 2008, 2011 Ben Morgan <neembi@googlemail.com>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
 
 # Unix style quote splitting
 def split(string):
@@ -60,6 +69,7 @@ def join(List):
         else:
             results.append(item)
     return ' '.join(results)
+
 
 def numbers(str_input, return_code=0, as_string=False, output_type='float'):
     """Extracts numbers from a string and then returns them"""
@@ -180,3 +190,5 @@ def whitenums(str_input, return_code=[0], as_string=0, onenumber_arg='float'):
     # If the list is empty
     if not newlist: return return_code
     return newlist
+
+# vim: set expandtab shiftwidth=4 softtabstop=4 textwidth=79:

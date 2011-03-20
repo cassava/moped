@@ -1,24 +1,27 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # mopedparser.py
 
-# This is the argument parsing development file for Moped 2.0
-# This is one of my masterpieces, version 1.0 completed
-# at 1:11am the 27th of November 2008
-# Ben Morgan
-
-name = "Moped Argument Parser"
-version = "1.4.1"
-author = "Ben Morgan"
-date = "6th of September, 2009"
-license = "GNU General Public License"
-email = "uv.sound@gmail.com"
+# This file aids in parsing the input for Moped
+# Copyright © 2008, 2009, 2011 Ben Morgan <neembi@googlemail.com>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
 
 import re
 import random
-
 import stringutils
-
 
 class ArgumentParser():
     """ArgumentParser takes care of argument parsing in Moped.
@@ -430,3 +433,4 @@ class MopedSyntaxError(MopedError):
     def __str__(self):
         return repr(self.representation)
 
+# vim: set expandtab shiftwidth=4 softtabstop=4 textwidth=79:

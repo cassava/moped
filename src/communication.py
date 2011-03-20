@@ -1,13 +1,23 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # communication.py
 
-name = "Communication Systems"
-version = "1.6.1"
-author = "Ben Morgan"
-date = "8th of June, 2009"
-license = "GNU General Public License"
-email = "uv.sound@gmail.com"
+# User interface communication abstraction layer
+# Copyright © 2008, 2009, 2011 Ben Morgan <neembi@googlemail.com>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
 
 import sys
 import os
@@ -105,3 +115,4 @@ class ConsoleCommunication():
     def write(self, text):
         print(text, end='')
 
+# vim: set expandtab shiftwidth=4 softtabstop=4 textwidth=79:

@@ -5,27 +5,38 @@
 # but this script is specifically for installing Moped into an Arch Linux
 # system with makepkg. That is, you need to make a PKGBUILD file for this.
 
-# A good prefix would be /usr or /usr/local
-PREFIX="$1/usr"
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <INSTALLATION PREFIX>"
+    exit 1
+fi
+
+# the package directory prefix, for example: /tmp/moped/
+PREFIX="$1"
+STARTDIR=$PWD
 
 echo -n "Installing Moped with prefix $PREFIX... "
 
-install -d $PREFIX/lib/moped
-install -m644 AUTHOR README CHANGES BUGS $PREFIX/lib/moped/
-install -m644 bin/*.py $PREFIX/lib/moped/
-install -m755 bin/moped.py $PREFIX/lib/moped/
+cd $STARTDIR/src
+install -d $PREFIX/usr/lib/moped
+install -m644 *.py $PREFIX/lib/moped/
+install -m755 moped.py $PREFIX/lib/moped/
 
-install -d $PREFIX/lib/moped/config
-install -m644 config/moped.conf.example $PREFIX/lib/moped/config/
+cd $STARTDIR
+install -d $PREFIX/usr/share/doc/moped
+install -m644  BUGS CHANGES README TODO $PREFIX/usr/share/doc/moped/
 
-install -d $PREFIX/share/man/man1
-install -m644 man/moped.1 $PREFIX/share/man/man1/
+cd $STARTDIR/doc
+install -d $PREFIX/usr/share/doc/moped/examples
+install -m644 examples/* $PREFIX/usr/share/doc/moped/examples/
 
-install -d $PREFIX/bin
+install -d $PREFIX/usr/share/man/man1
+install -m644 man/moped.1 $PREFIX/usr/share/man/man1/
+
+install -d $PREFIX/usr/bin
 # this line below needs to be changed if you change PREFIX
 # makepkg will however strip this link, so it should also
 # be in PKGBUILD
-ln -s /usr/lib/moped/moped.py $PREFIX/bin/moped
+ln -s $PREFIX/usr/lib/moped/moped.py $PREFIX/usr/bin/moped
 
 echo "done."
 

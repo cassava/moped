@@ -1,5 +1,10 @@
-# Python MPD client library
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# mpdclient3.py
+
+# Python MPD client library (for Python 3.x)
 # Copyright (C) 2008  J. Alexander Treuman <jat@spatialrift.net>
+# Copyright (C) 2008  Ben Morgan <neembi@googlemail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,9 +19,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# ----------
-# mpdclient3 is my own altered version of the mpd-python implementation.
-# It has been altered so that it runs properly on Python 3.0
+# mpdclient3 is an altered version of the original mpd-python implementation
+# by J. Alexander Treuman. It has been only altered so that it runs correctly
+# on Python 3.
 
 import socket
 

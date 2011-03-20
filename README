@@ -29,7 +29,6 @@ Examples (shamelessly copied from the man file)
 
 Features
 ----------
-  * Flexible messaging system
   * Flexible search functions
     - regex
     - filtering
@@ -45,11 +44,11 @@ Features
   * Crop or clear the playlist
   * Withhold songs while cropping
   * Perform individual commands (such as only crop)
-  * Gui messaging (moped -g is useful, bind it to a shortcut)
+  * Simple GUI interface (use `moped -g`)
 
 
 _Read the man file!_
 
 
-_Revision: 18. November 2010_
+_Revision: 20. March 2011_
 

@@ -1,31 +1,46 @@
 #!/bin/bash
-# install.sh.example v2.15
+# install.sh.example v2.16
 
 # This is an example installation script! For most systems it should work,
 # but this script is specifically for installing Moped into an Arch Linux
 # system with makepkg. That is, you need to make a PKGBUILD file for this.
 
-# A good prefix would be /usr or /usr/local
-PREFIX="$1/usr"
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <INSTALLATION PREFIX>"
+    exit 1
+fi
+
+# the package directory prefix, for example: /tmp/moped/
+PREFIX="$1"
+STARTDIR=$PWD
+BINDIR="$PREFIX/usr/bin"
+DATADIR="$PREFIX/usr/lib/moped"
+DOCDIR="$PREFIX/usr/share/doc/moped"
+MANDIR="$PREFIX/usr/share/man"
+
 
 echo -n "Installing Moped with prefix $PREFIX... "
 
-install -d $PREFIX/lib/moped
-install -m644 AUTHOR README CHANGES BUGS $PREFIX/lib/moped/
-install -m644 bin/*.py $PREFIX/lib/moped/
-install -m755 bin/moped.py $PREFIX/lib/moped/
+cd $STARTDIR/src
+install -d $DATADIR
+install -m644 *.py $DATADIR/
+install -m755 moped.py $DATADIR/
 
-install -d $PREFIX/lib/moped/config
-install -m644 config/moped.conf.example $PREFIX/lib/moped/config/
+cd $STARTDIR
+install -d $DOCDIR
+install -m644  BUGS CHANGES README TODO $DOCDIR/
 
-install -d $PREFIX/share/man/man1
-install -m644 man/moped.1 $PREFIX/share/man/man1/
+cd $STARTDIR/doc
+install -d $DOCDIR/examples
+install -m644 examples/* $DOCDIR/examples/
 
-install -d $PREFIX/bin
-# this line below needs to be changed if you change PREFIX
-# makepkg will however strip this link, so it should also
-# be in PKGBUILD
-ln -s /usr/lib/moped/moped.py $PREFIX/bin/moped
+install -d $PREFIX/usr/share/man/man1
+install -m644 man/moped.1 $MANDIR/man1/
+
+# Install a symlink to the normal binary directory, so that moped
+# is also in the system path and can be excuted with `moped`.
+#install -d $BINDIR
+#ln -s $DATADIR/moped.py $BINDIR/moped
 
 echo "done."
 
